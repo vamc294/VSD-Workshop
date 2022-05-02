@@ -1075,6 +1075,7 @@ generate
 endgenerate   
 
 ```
+![](/assets/forr.jpg)
 **Generating Mux**
 
 
@@ -1113,3 +1114,40 @@ endmodule
 ```
 The waveform is as follows:
 ![](assets/for_demux.png)
+
+**RCA**
+- Ripple carry adder:
+![](/assets/generate1.jpg)
+![](/assets/generate2.jpg)
+  ```
+  module rca (input [7:0] num1 , input [7:0] num2 , output [8:0] sum);
+  wire [7:0] int_sum;
+  wire [7:0]int_co;
+
+   genvar i;
+    generate
+	for (i = 1 ; i < 8; i=i+1) begin
+		fa u_fa_1 (.a(num1[i]),.b(num2[i]),.c(int_co[i-1]),.co(int_co[i]),.sum(int_sum[i]));
+	end
+
+   endgenerate
+   fa u_fa_0 (.a(num1[0]),.b(num2[0]),.c(1'b0),.co(int_co[0]),.sum(int_sum[0]));
+
+
+   assign sum[7:0] = int_sum;
+   assign sum[8] = int_co[7];
+   endmodule
+
+  ```
+  Verilog Program for Full Adder Instantiation:
+  ```
+  module fa (input a , input b , input c, output co , output sum);
+	assign {co,sum}  = a + b + c ;
+   endmodule
+  ```
+
+
+
+# Acknowledgements:
+- [Kunalghosh(Co-founder-VLSI System Design)](https://github.com/kunalg123)
+- [Shon Taware (Teaching Assistant)](https://github.com/ShonTaware)
