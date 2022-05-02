@@ -444,11 +444,11 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
    - If initial state of flop is unknown,it will take garbage value.
    - So we use set and reset pins.
    - **Asynchronous reset** wont wait for the clock </br>
-   - If both set and reset are present, this may leads to **race-around** condition.
+   - If both set and reset are present, this may leads to **race-around** condition.</br>
 **One of the example for asynchronous reset is:**
  ![](assets/image_27.png)
  
-  ![](assets/image_28.png)
+ ![](assets/image_28.png)
 
 
  ![](assets/image_33.png)
