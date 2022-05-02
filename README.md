@@ -342,4 +342,40 @@ The netlist file will be as follows:
  endmodule  
  
  ```
+# 3. Day 2 - Timing libs, hierarchical vs flat synthesis and efficient flop coding styles
+## 3.1. Timing libs
+### 3.1.1. Sky130 Process Node
+- The Standard cell library :
+- The Library files We are Using Here are Sky130 Process Node:
+- About Sky130 Process Node:The SKY130 is a mature 180nm-130nm hybrid technology originally developed internally by Cypress Semiconductor before being spun out into     SkyWater Technology and made accessible to general industry.  
+ 
+    ```
+    
+    $  gvim Sky130_fd_scSky130_fd_sc_hd_tt_025C_1v80.lib  
+ 
+   ```
 
+### 3.1.2. Introduction to standard cell library
+Nomenclature is as follows:
+![](assets/Image_21.png)
+
+- To search individual  Standard cells in library use the following Commands.
+
+```
+
+:syn off     //to turn off the syntax
+:se nu     //To show numbers
+:/cell     //search for "cell"
+:g//       //list all
+
+```
+
+
+Here the example of standard cell library is as follows:
+
+![](assets/Image_22.png)
+</br>
+![](assets/Image_23.png)
+</br>
+![](assets/Image_24.png)
+</br>
