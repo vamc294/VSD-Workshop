@@ -72,8 +72,10 @@ It is the actual verilog code or set of verilog codes( here in this context) whi
 Testbench is a setup to apply stimulus (test_vectors) [test_vectors] (https://en.wikipedia.org/wiki/Test_vector) to design to check its functionality. Testbench doesn't have any primary inputs and outputs.
 
 **How Simulator works ?**:
- &emsp; &emsp;1. Simulator works for changes in the input signal.
- &emsp; &emsp;2. Upon change to input, output is evaluated. If no change to input, then there will be no change to output.
+
+ Simulator works for changes in the input signal.
+ Upon change to input, output is evaluated. If no change to input, then there will be no change to output.
+ 
 ![](assets/simulation.png)
 The simulation output of iVerilog can be taken as a value change dump ('.vcd') file that could then be visualized in GTKWave.  
 [GTKWave](http://gtkwave.sourceforge.net/) is an open source tool for visualizing the signal dumps in .vcd/.lxt formats.  
