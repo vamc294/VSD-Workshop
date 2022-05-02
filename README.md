@@ -35,7 +35,7 @@ Table of Contents
 - [5. Day 4 - Gate Level Simulation](#5-Gate-Level-Simulation)
   - [5.1.1 What is GLS?](#51-What-is-GLS?)
     
-  - [5.2. Blocking vs NonBlocking statements:](#52-Blocking-vs-NonBlocking-statements:)
+  - [5.2. Blocking vs NonBlocking statements](#52-Blocking-vs-NonBlocking-statements)
   - [5.3. Synthesis Simulation Mismatch](#53-Synthesis-Simulation-Mismatch)
     - [5.3.1. Reasons](#331-Reasons)
 - [6. Day 5 - If Case For Generate](#4-day-3---combinational-and-sequential-optimizations)
