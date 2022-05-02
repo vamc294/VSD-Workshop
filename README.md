@@ -374,8 +374,17 @@ Nomenclature is as follows:
 Here the example of standard cell library is as follows:
 
 ![](assets/image_22.png)
+
 </br>
 ![](assets/image_23.png)
+
 </br>
 ![](assets/image_24.png)
 </br>
+
+
+## 3.2. Hierarchial synthesis vs Flat synthesis
+### 3.2.1. Hierarchial synthesis
+
+In hierarchial synthesis the hierarchy of the RTL design is preserved through the final netlist. Let us look at the below RTL design where we have two sub modules, both instantiated by a top modules.  
+
