@@ -35,8 +35,29 @@ Table of Contents
   - [4.2. Logic optimizations in Yosys](#42-logic-optimizations-in-yosys)
     - [4.2.1. Optimization design example 2](#421-optimization-design-example-2)
     - [4.2.2. Optimization design example 2](#422-optimization-design-example-2)
-
-
+- [3. Day 4 - Timing libs, hierarchical vs flat synthesis and efficient flop coding styles](#3-day-2---timing-libs-hierarchical-vs-flat-synthesis-and-efficient-flop-coding-styles)
+  - [3.1. Timing libs](#31-timing-libs)
+    - [3.1.1. Sky130 Process Node](#311-sky130-process-node)
+    - [3.1.2. Introduction to standard cell library](#312-introduction-to-standard-cell-library)
+  - [3.2. Hierarchial synthesis vs Flat synthesis](#32-hierarchial-synthesis-vs-flat-synthesis)
+    - [3.2.1. Hierarchial synthesis](#321-hierarchial-synthesis)
+    - [3.2.2. Selective sub-module level synthesis](#322-selective-sub-module-level-synthesis)
+    - [3.2.3. Flat synthesis](#323-flat-synthesis)
+  - [3.3. Various Flop coding styles and optimization](#33-various-flop-coding-styles-and-optimization)
+    - [3.3.1. Optimizations](#331-optimizations)
+- [6. Day 5 - If Case For Generate](#4-day-3---combinational-and-sequential-optimizations)
+  - [6.1. If statement](#41-logic-optimizations)
+  
+    - [6.1.1. If ](#411-combinational-constant-propogation)
+    - [6.1.2. else if](#411-combinational-constant-propogation)
+    - [6.1.3. Danger with If](#411-combinational-constant-propogation)
+   
+  - [6.2. Case statement](#42-logic-optimizations-in-yosys)
+    - [6.2.1. Caveat with case](#421-optimization-design-example-2)
+    - [6.2.2. Caveat with case2](#422-optimization-design-example-2)
+    - [6.2.3. Incomplete case](#422-optimization-design-example-2)
+   - [6.3. For vs For Generate](#42-logic-optimizations-in-yosys)
+     - [6.2.1. Caveat with case](#421-optimization-design-example-2)
 
 
 
@@ -467,4 +488,219 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
    - Therefore, multiply by 2 means  ----> append by zero
    - Therefore, multiply by 4 means  ----> append by 2 zeros
    - Therefore, multiply by 8 means  ----> append by 3 zeros
+ #6. Day 5 - If Case For Generate
+ 
+ 
+ ##6.1 If statement
+  ###6.1.1 If:
 
+   ```
+
+  if <cond>
+       begin
+         ---------
+         ---------
+         ---------
+         ---------
+       end
+  else
+       begin
+         ---------
+         ---------
+         ---------
+         ---------
+      end
+  
+ 
+   ```
+
+If is used as a priority logic. Above code is example for normal if and else statement.</br>
+
+
+
+ ##6.1.2 else if statement:
+ 
+ There is another kind of if else, where we can use else-if. The example is followed below:
+
+ 
+ 
+   ```
+
+  if <condition 1>
+       begin
+         ---------
+         ---------
+         ---------
+         ---------
+       end
+   else if <condition 2>
+       begin
+         ---------
+         ---------
+         ---------
+         ---------
+      end
+    else if<condition 3>
+       begin
+         ---------
+         ---------
+         ---------
+         ---------
+      end
+  else
+       begin
+         ---------
+         ---------
+         ---------
+         ---------
+      end
+  
+ 
+   ```
+Multiple conditions can be checked through else if statement.
+
+
+###6.1.3 Danger with If
+
+-Incomplete if statments cause Inferred latches(This is a bad coding style)
+-In combinational circuits, inferred latches are dangerous.
+- The example is as below:
+
+ ```
+
+  if <cond>
+       begin
+         ---------
+         ---------
+         ---------
+         ---------
+       end
+  else if <cond 2>
+       begin
+         ---------
+         ---------
+         ---------
+         ---------
+      end
+  
+ 
+   ```
+   
+   
+   
+ **Exception to Inferred latch:**
+ - consider counter as example, here inferred latches are needed.
+```
+reg[2:0] count
+always@(posedge clk, posedge reset)
+begin
+  if (reset)
+       begin
+            count<=3'b000;
+       end
+  else if (en)
+       begin
+         count<= count +1;
+       end
+end
+ 
+   ```
+   
+- The results for incomplete if case are as follows:   
+![](assets/incomp_if_code.png)
+![](assets/incomp_if_syn.png)
+![](assets/incomp_if_sim.png)
+##6.2 case statement
+- If and case statements are always used inside 'always' block.
+- Their output should be as reg variable.
+- The example is as follows:
+```
+reg y
+always@(*)
+begin
+  case(sel)
+       2'b00: begin
+                  -------
+                  -------
+               end
+        2'b01: begin
+                  -------
+                  -------
+               end
+       endcase
+end 
+   ```
+###6.3.3 Coveat with case:
+- Incomplete case results in inferred latches
+```
+reg y
+always@(*)
+begin
+  case(sel)
+       2'b00: begin
+                  
+                  x=a;
+                  y=b;
+               end
+        2'b01: begin
+                  x=c;
+                  y=d;
+                  end
+       endcase
+end 
+   ```
+- The above is incomplete, it will result in inferred latch.
+- To avoid inferred latches, we code case with 'default'
+```
+reg y
+always@(*)
+begin
+  case(sel)
+       2'b00: begin
+       
+                  x=a;
+                  y=b;
+              end
+        2'b01: begin
+                  x=d;
+                  y=e;
+               end
+       default: begin
+                  x=f;
+                  y=d;
+               end
+       endcase
+end 
+   ```
+###6.2.2 caveat with case 2
+- Partial assignments will lead to inferred latches
+- The example will be as follows:
+```
+reg [1:0] sel;
+reg x,y;
+always@(*)
+begin
+  case(sel)
+       2'b00: begin
+                 x=a;
+                 y=b;
+               end
+        2'b01: begin
+                  x=c;
+                end
+       default: begin
+                  x=d;
+                  y=b;
+               end
+       endcase
+end 
+   ```
+   
+   
+**Note**:
+- Assign all outputs in all segments of case.
+- We can get unpredictable output throgh case statement.
+- Bad cases can match in case statement.
+
+
+- We should avoid overlapping cases while using case statement.
