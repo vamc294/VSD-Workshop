@@ -57,10 +57,7 @@ This report is written as a part of final submission to summarize the 5-day jour
 # 2. Day 1 - Introduction to Verilog RTL design and Synthesis
 ## 2.1. Introduction to Simulation
 **RTL design**:
-                Register Transfer Level (RTL) is a representation of the digital circuit at the abstract level.
-                
-                There are two elements in digital circuits: Sequential Circuit and Combinational Circuit , with the help of these two elements, a digital designer can implement any circuit.
-There are two commonly used variants of the RTL — namely: Verilog and VHDL, which a digital design engineer can represent their functionality of the design in a simple text entry language.
+                Register Transfer Level (RTL) is a representation of the digital circuit at the abstract level.There are two elements in digital circuits: Sequential Circuit and Combinational Circuit , with the help of these two elements, a digital designer can implement any circuit.There are two commonly used variants of the RTL — namely: Verilog and VHDL, which a digital design engineer can represent their functionality of the design in a simple text entry language.
 Before the RTL invention, engineers designed a complete functionality as a circuit — schematic entry, this made the design a hefty job with high level of errors.
 
 **Simulation**: 
@@ -75,8 +72,8 @@ It is the actual verilog code or set of verilog codes( here in this context) whi
 Testbench is a setup to apply stimulus (test_vectors) [test_vectors] (https://en.wikipedia.org/wiki/Test_vector) to design to check its functionality. Testbench doesn't have any primary inputs and outputs.
 
 **How Simulator works ?**:
-&emsp;&emsp;1. Simulator works for changes in the input signal.
-&emsp;&emsp;2. Upon change to input, output is evaluated. If no change to input, then there will be no change to output.
+ &emsp; &emsp;1. Simulator works for changes in the input signal.
+ &emsp; &emsp;2. Upon change to input, output is evaluated. If no change to input, then there will be no change to output.
 ![](assets/simulation.png)
 The simulation output of iVerilog can be taken as a value change dump ('.vcd') file that could then be visualized in GTKWave.  
 [GTKWave](http://gtkwave.sourceforge.net/) is an open source tool for visualizing the signal dumps in .vcd/.lxt formats.  
