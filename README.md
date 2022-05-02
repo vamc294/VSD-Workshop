@@ -373,9 +373,9 @@ Nomenclature is as follows:
 
 Here the example of standard cell library is as follows:
 
-![](assets/Image_22.png)
+![](assets/image_22.png)
 </br>
-![](assets/Image_23.png)
+![](assets/image_23.png)
 </br>
-![](assets/Image_24.png)
+![](assets/image_24.png)
 </br>
