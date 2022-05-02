@@ -442,6 +442,7 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
 - If both set and reset are present, this may leads to **race-around** condition.
 - One of the example is:
  ![](assets/image_27.png)
- </br>
+
+
  ![](assets/image_28.png)
 
