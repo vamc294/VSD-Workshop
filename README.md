@@ -416,7 +416,7 @@ we can see sub modules 1 and 2 here:
 - pMos has poor mobility, to improve it we have to make cells larger.
 - Stacked pmos is bad.
 - so we get nand based gates in this synthesis.
-### 3.2.2.Why to synth only sub module
+### 3.2.2. Why to synth only sub module
 Just like synthesizing an RTL design at the top mudule level, it can be synthesized at the sub-module level as well. This level of freedom brings the below advantsges.  
 * &emsp;  Multiple instantions: In case of having multiple instantiations in our design, this feature helps to synthesize just one instance and use it iteratively throughout the top level.    
 * &emsp;  Massive desgins: In case of massive design, sub-module level synthesis reduces the burden on sythesis tool in-terms of performance and time.  
