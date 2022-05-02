@@ -78,8 +78,14 @@ Testbench is a setup to apply stimulus [(test_vectors)](https://en.wikipedia.org
  
 ![](assets/simulator_working.png)
 
-**iverilog based simulation flow**:
+**iVerilog based Simulation flow**:
 ![](assets/iverilog_based.png)
+
+1. We will apply design and testbench to iverilog.
+
+2. Simulator looks for changes in input and dumps output changes into VCD file.
+
+3. We use gtk wave to view vcd file.
 
 The simulation output of iVerilog can be taken as a value change dump ('.vcd') file that could then be visualized in GTKWave.  
 [GTKWave](http://gtkwave.sourceforge.net/) is an open source tool for visualizing the signal dumps in .vcd/.lxt formats.  
