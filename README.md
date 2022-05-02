@@ -1012,3 +1012,104 @@ end
 ![](assets/comp_case_sim.png)
 
 ![](assets/comp_case_syn.png)
+## 5.3 For loop:
+-For loop is of two types:
+**For Loop:**
+-inside always 
+- evaluating expressions
+- not for generating or instantiating hardware.
+**generate for loop:*
+- outside always loop
+- not for evaluating 
+- instantiates the hardware
+
+
+observe this snippets below :
+```
+always@(*)
+begin
+  case(sel)
+       2'b00: begin
+                  -------
+                  -------
+               end
+        2'b01: begin
+                  -------
+                  -------
+               end
+       endcase
+end 
+```
+- As here there are only 2 bits, this is easy.
+- But when we move in to more and more bits,this will be tedious and may lead to errors.
+Observe the below snippet:
+```
+assume inp[31:0]
+integer i;
+always@(*)
+begin
+  for (i=0;i<32;i=i+1)
+      if(i==sel)
+           y=inut[i]
+       end
+end
+```
+- By this we can understand, how useful for loop can be while evaluating.
+- This made our code look clean and easy.
+- For very wide mux/demux for statement will be handy.
+
+
+##5.4 For generate loop
+- To replicate hardware we can use for generate block.
+- It should be outside always block.
+Look at the below snippet
+
+``` 
+genvar i;
+generate 
+ for(i=0;i<8;i=i+1)
+    begin
+       and u_and(.a(in[i]),.b(in[i]),.y(y[i]));
+     end
+    
+endgenerate   
+
+```
+**Generating Mux**
+
+
+```
+module mux_generate (input i1 , input i1, input i2 , input i3 , input [1:0] sel  , output reg y);
+wire [3:0] i_int;
+assign i_int = {i3,i2,i1,i0};
+integer k;
+always @ (*)
+begin
+for(k = 0; k < 4; k=k+1) begin
+	if(k == sel)
+		y = i_int[k];
+end
+end
+endmodule
+```
+The waveform is as follows:
+![](assets/for_generate.png)
+**Generating deMux**
+
+```
+module demux_generate (output o0 , output o1, output o2 , output o3, output o4, output o5, output o6 , output o7 , input [2:0] sel  , input i);
+reg [7:0]y_int;
+assign {o7,o6,o5,o4,o3,o2,o1,o0} = y_int;
+integer k;
+always @ (*)
+begin
+y_int = 8'b0;
+for(k = 0; k < 8; k++) begin
+	if(k == sel)
+		y_int[k] = i;
+end
+end
+endmodule
+```
+The waveform is as follows:
+![](assets/for_demux.png)
