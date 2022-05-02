@@ -164,21 +164,42 @@ There is a need of tool to convert RTL to netlist.
 The working may look as follows:
 ![](assets/image_6.png)
 
-** what is .lib ?**
+**what is .lib ?**
 
 - Collection of logical modules is a .lib file.
 - It includes basic gates like and,or,not etc.
 - Different flavors of some gates (2 i/p, 3 i/p, slow, fast etc)will be available. </br>
 
-** Why different flavors of gate?** </br>
+**Why different flavors of gate ?** </br>
 Combinational delay in logic path determine maximum speed of operation of digital logic circuit.So we need cells that work fast to make T_comb small.
 ![](assets/image_7.jpg)
 
 ![](assets/image_8.jpg)
 
-** Are faster cells sufficient?** </br>
+**Are faster cells sufficient ?** </br>
 
 To ensure there are no hold issues at Dff_B, we need cells that work slow.
 ![](assets/image_9.jpg)
+
+So from figure, we can observe  what DFF_A launched should be captured by DFF_B in next cycle. Else,we will lose data. So, we need hold time.
+Hence we need cells that work fast to meet required performance and we need cells to work slow to meed hold.</br>
+This collection forms .lib file.
+
+**Faster cells vs Slower cells:** </br>
+Load in digital circuit can be inferrred as capacitance.
+- faster the charging/discharging of capacitance, lesser the delay of cell.
+- To charge/discharge capacitor fast, we need transistors that are capable of sourcing more current.</br>
+
+wider transistors ----> low delay ----> more area and power </br>
+narrow transistors ----> more delay ----> less area and power </br>
+
+Therefore, we can understand that faster cells come at the penalty of area and power.
+
+**Selection of cells:**</br>
+- Need to guide synthesizer to select flavor of cells that is optimum for implementation of logic circuit.
+- More use of faster cells cause bad circuit in terms of power and area. It may also cause hold time violatons.
+- More use of slower cells may cause sluggish circuit and may not meet performance needs.</br>
+The guidance offered to synthesizer is known as **constraints**.
+
 
 
