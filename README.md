@@ -153,7 +153,7 @@ The images and results are as follows:
 
 # Introduction to Yosys
 
-# synthesis
+ **Synthesis**
 There is a need of tool to convert RTL to netlist.
 ![](assets/Yosys_1.png)
 
