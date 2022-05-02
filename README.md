@@ -396,7 +396,7 @@ we can see sub modules 1 and 2 here:
 
 
 **Stacked nMos vs Stacked pMos:**
-![](assets/image_29.png)
+![](assets/image_29.jpg)
 
 - pMos has poor mobility, to improve it we have to make cells larger.
 - Stacked pmos is bad.
@@ -411,7 +411,7 @@ We can see that the synth command just looks at the specified sub_module1 alone 
 
 - when we have multiple instance of same module.
 - To divide and conquer a massive design.
- ![](assets/image_30.png)
+ ![](assets/image_30.jpg)
 - 
 **flatten** :</br>This pass flattens the design by replacing cells by their implementation. 
 </br>
@@ -419,7 +419,7 @@ Cells and/or modules with the 'keep_hierarchy' attribute set will not be flatten
 
 As the name suggestes this pass flattens out the design and hence the hierarchy is lost.  
 Let us observe the impact of 'flatten' on multiple_modules.v.  
-![](assets/image_31.pg)  
+![](assets/image_31.png)  
 </br>
 
 
@@ -431,14 +431,14 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
 -  If the RTL design has sequential logic, dfflibmap pass has to be executed before abc pass.
 -  dfflibmap pass looks for the register cells in the Liberty and maps to the sequential logic from the synthesis. And then abc pass has to used to complete the mapping for combinatorial logic.  
 ** why flop?**
- ![](assets/image_32.png)
+ ![](assets/image_32.jpg)
  
 
 - More combinational circuit means more glitch
 - we need element to store, i.e flop
 - flop will be stable, it changes only at the edge of clock.
 - As output changes only at the edge of the clock. So even if input glitching, output will be calmed down.
- ![](assets/image_34.png)
+ ![](assets/image_34.jpg)
 
 **why set and Reset pins?**
    - If initial state of flop is unknown,it will take garbage value.
@@ -451,7 +451,7 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
  ![](assets/image_28.png)
 
 
- ![](assets/image_33.png)
+ ![](assets/image_33.jpg)
 
 **Optimisation**
   ```
@@ -461,7 +461,7 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
     endmodule
  
    ```
-![](assets/image_32.png)
+![](assets/image_35.jpg)
 
    Here the last bit getting appended by zero as logic.
    - Therefore, multiply by 2 means  ----> append by zero
