@@ -419,7 +419,7 @@ Cells and/or modules with the 'keep_hierarchy' attribute set will not be flatten
 
 As the name suggestes this pass flattens out the design and hence the hierarchy is lost.  
 Let us observe the impact of 'flatten' on multiple_modules.v.  
-![flatten](assets/image_31.pg)  
+![](assets/image_31.pg)  
 </br>
 
 
@@ -431,20 +431,28 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
 -  If the RTL design has sequential logic, dfflibmap pass has to be executed before abc pass.
 -  dfflibmap pass looks for the register cells in the Liberty and maps to the sequential logic from the synthesis. And then abc pass has to used to complete the mapping for combinatorial logic.  
 ** why flop?**
+ ![](assets/image_32.png)
+ 
+
 - More combinational circuit means more glitch
 - we need element to store, i.e flop
 - flop will be stable, it changes only at the edge of clock.
 - As output changes only at the edge of the clock. So even if input glitching, output will be calmed down.
+ ![](assets/image_34.png)
+
 **why set and Reset pins?**
-- If initial state of flop is unknown,it will take garbage value.
-- So we use set and reset pins.
-- **Asynchronous reset** wont wait for the clock </br>
-- If both set and reset are present, this may leads to **race-around** condition.
-- One of the example is:
+   - If initial state of flop is unknown,it will take garbage value.
+   - So we use set and reset pins.
+   - **Asynchronous reset** wont wait for the clock </br>
+   - If both set and reset are present, this may leads to **race-around** condition.
+**One of the example for asynchronous reset is:**
  ![](assets/image_27.png)
+ 
+  ![](assets/image_28.png)
 
 
- ![](assets/image_28.png)
+ ![](assets/image_33.png)
+
 **Optimisation**
   ```
 
