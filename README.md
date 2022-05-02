@@ -171,8 +171,14 @@ The working may look as follows:
 - Different flavors of some gates (2 i/p, 3 i/p, slow, fast etc)will be available. </br>
 
 ** Why different flavors of gate?** </br>
-Combinational delay in logic path determine maximum speed of operation of digital logic circuit.So we need cells that work fast tto make T_comb small.
+Combinational delay in logic path determine maximum speed of operation of digital logic circuit.So we need cells that work fast to make T_comb small.
+![](assets/image_7.jpg)
+
+![](assets/image_8.jpg)
+
 ** Are faster cells sufficient?** </br>
-To ensure there are nohold issues at Dff_B, we need cells that work slow.
+
+To ensure there are no hold issues at Dff_B, we need cells that work slow.
+![](assets/image_9.jpg)
 
 
