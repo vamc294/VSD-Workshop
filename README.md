@@ -76,7 +76,8 @@ Testbench is a setup to apply stimulus (test_vectors) [test_vectors] (https://en
  Simulator works for changes in the input signal.
  Upon change to input, output is evaluated. If no change to input, then there will be no change to output.
  
-![](assets/simulator working.png)
+![](assets/ simulator working.png)
+
 The simulation output of iVerilog can be taken as a value change dump ('.vcd') file that could then be visualized in GTKWave.  
 [GTKWave](http://gtkwave.sourceforge.net/) is an open source tool for visualizing the signal dumps in .vcd/.lxt formats.  
 
