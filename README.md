@@ -23,10 +23,10 @@ Table of Contents
     - [3.1.2. Introduction to standard cell library](#312-introduction-to-standard-cell-library)
   - [3.2. Hierarchial synthesis vs Flat synthesis](#32-hierarchial-synthesis-vs-flat-synthesis)
     - [3.2.1. Hierarchial synthesis](#321-hierarchial-synthesis)
-    - [3.2.2. why to synthonly sub module ?](#322-why-to-synth-only sub-module-?)
-    - [3.2.3. How to code a flop ?](#323-How-to-code-a-flop-?)
+    - [3.2.2. Why to synth only sub module](#322-Why-to-synth-only sub-module)
+    - [3.2.3. How to code a flop](#323-How-to-code-a-flop)
   
-- [4. Day 3 - Combinational and Sequential optimisation(#4-day-3---combinational-and-sequential-optimisation)
+- [4. Day 3 - Combinational and Sequential optimisation](#4-day-3---combinational-and-sequential-optimisation)
   - [4.1. Combinational logic optimisation](#-combinational-logic-optimisation)
     
   - [4.2. Multiple_modules_opt In Hier Vs flat:](#42-Multiple_modukes_opt_In_Hier_Vs_flat)
@@ -416,7 +416,7 @@ we can see sub modules 1 and 2 here:
 - pMos has poor mobility, to improve it we have to make cells larger.
 - Stacked pmos is bad.
 - so we get nand based gates in this synthesis.
-### 3.2.2. Why to synth only sub module ?
+### 3.2.2. Why to synth only sub module?
 Just like synthesizing an RTL design at the top mudule level, it can be synthesized at the sub-module level as well. This level of freedom brings the below advantsges.  
 * &emsp;  Multiple instantions: In case of having multiple instantiations in our design, this feature helps to synthesize just one instance and use it iteratively throughout the top level.    
 * &emsp;  Massive desgins: In case of massive design, sub-module level synthesis reduces the burden on sythesis tool in-terms of performance and time.  
