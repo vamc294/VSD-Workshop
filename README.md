@@ -69,7 +69,7 @@ iVerilog  [Icarus Verilog](http://iverilog.icarus.com/) is an open source toolch
 It is the actual verilog code or set of verilog codes( here in this context) which has the intended functionality to meet the requirement specifications.
 
 **Test bench**:
-Testbench is a setup to apply stimulus (test_vectors) [test_vectors] (https://en.wikipedia.org/wiki/Test_vector) to design to check its functionality. Testbench doesn't have any primary inputs and outputs.
+Testbench is a setup to apply stimulus [(test_vectors)](https://en.wikipedia.org/wiki/Test_vector/) to design to check its functionality. Testbench doesn't have any primary inputs and outputs.
 
 **How Simulator works ?**:
 
@@ -77,6 +77,9 @@ Testbench is a setup to apply stimulus (test_vectors) [test_vectors] (https://en
  Upon change to input, output is evaluated. If no change to input, then there will be no change to output.
  
 ![](assets/simulator_working.png)
+
+**iverilog based simulation flow**:
+![]
 
 The simulation output of iVerilog can be taken as a value change dump ('.vcd') file that could then be visualized in GTKWave.  
 [GTKWave](http://gtkwave.sourceforge.net/) is an open source tool for visualizing the signal dumps in .vcd/.lxt formats.  
