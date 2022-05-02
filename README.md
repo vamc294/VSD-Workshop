@@ -118,8 +118,35 @@ Testbench is a setup to apply stimulus [(test_vectors)](https://en.wikipedia.org
 
 The images are as follows:
 ![](assets/git_clone.png)
+
 ![](assets/image_2.png)
+
 ![](assets/image_3.png)
+
 ![](assets/image_4.png)
 
 
+#  Simulation Using iverilog. <br/>
+-  1.  Into iverilog simulator RTL file and Test-bench files are passed. Then "a.out" file is generated <br/>
+
+```
+iverilog good_mux.v tb_good_mux.v
+
+```
+-  2. Now to get the .vcd file <br/>
+
+```
+./a.out
+
+```
+-  3.To view the waveform for logical verification run the .vcd file with gtkwave <br/>
+
+``` 
+ gtkwave tb_good_mux.vcd
+ 
+ ```
+
+The images and results are as follows:
+![](assets/image_5.png)
+
+![](assets/waveform_gtkwave.png)
