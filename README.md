@@ -445,4 +445,18 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
 
 
  ![](assets/image_28.png)
+**Optimisation**
+  ```
+
+    module mul2(input[2:0]a,output[3:0]y);
+           assign y=a*2;
+    endmodule
+ 
+   ```
+![](assets/image_32.png)
+
+   Here the last bit getting appended by zero as logic.
+   - Therefore, multiply by 2 means  ----> append by zero
+   - Therefore, multiply by 4 means  ----> append by 2 zeros
+   - Therefore, multiply by 8 means  ----> append by 3 zeros
 
