@@ -23,7 +23,7 @@ Table of Contents
     - [3.1.2. Introduction to standard cell library](#312-introduction-to-standard-cell-library)
   - [3.2. Hierarchial synthesis vs Flat synthesis](#32-hierarchial-synthesis-vs-flat-synthesis)
     - [3.2.1. Hierarchial synthesis](#321-hierarchial-synthesis)
-    - [3.2.2. Why to synth only sub module](#322-Why-to-synth-only sub-module)
+    - [3.2.2. Why to synth only sub module](#322-Why-to-synth-only-sub-module)
     - [3.2.3. How to code a flop](#323-How-to-code-a-flop)
   
 - [4. Day 3 - Combinational and Sequential optimisation](#4-day-3---combinational-and-sequential-optimisation)
