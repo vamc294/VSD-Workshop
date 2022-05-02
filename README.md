@@ -87,8 +87,36 @@ Testbench is a setup to apply stimulus [(test_vectors)](https://en.wikipedia.org
 
 3. We use gtk wave to view vcd file.
 
-The simulation output of iVerilog can be taken as a value change dump ('.vcd') file that could then be visualized in GTKWave.  
 [GTKWave](http://gtkwave.sourceforge.net/) is an open source tool for visualizing the signal dumps in .vcd/.lxt formats.  
 
+# iverilog Set-up:
+- open terminal and create a root directory to work-in
+- Here are the commands to Get started
+
+  ```
+   mkdir vlsi
+   cd vlsi
+   mkdir vsdflow
+   git clone  https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
+   
+   ```
+- Now to Check the Content Enter
+
+   ```
+      cd vlsi
+      cd vsdflow
+      ls 
+      cd sky130RTLDesignAndSynthesisWorkshop
+      ls -ltr
+      cd my_lib
+      ls
+      cd lib   :This file contain the  Sky130 Standard Cell library
+      cd ..
+      cd verilog_model :Content of verilog models
+      
+   ```
+
+The images are as follows:
+!() [
 
 
