@@ -706,7 +706,7 @@ end
 - We should avoid overlapping cases while using case statement.
 **Example of complete case with figures**
 </br>
-.[](assets/comp_case_code.png)
+.[](assets/comp_case_code.png) 
 
 .[](assets/comp_case_sim.png)
 
