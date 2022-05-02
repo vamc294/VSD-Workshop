@@ -715,7 +715,9 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
 - For this GLS we need to be run with delay annotation.
 ###5.1.3 GLS using iverilog:
 If gate level models are delay annotated, then we can use GLS for timing violation
-![]()
+![](/assets/day4_1.png)
+![](/assets/day4_2.png)
+
 ## 5.2 Blocking vs Non-Blocking statements:
 
  **Blocking**
@@ -739,11 +741,11 @@ Simulator works based on activity. A change in input only can cause change in ou
 	assign y = sel?i1:i0;
 	endmodule
    ```
-   ![]()
+   ![](/assets/ternary_mux.png)
    
-   ![]()
+   ![](/assets/ternary_mux2.png)
   
-  ![]()
+  ![](/assets/ternary_mux3.png)
 **good_mux**
 
     ```
@@ -760,9 +762,10 @@ Simulator works based on activity. A change in input only can cause change in ou
       
     ```
 
-![]()
+![](/assets/day4_3.png)
 
-![]()
+
+![](/assets/good_mux.png)
 
 **bad_mux**
 
@@ -779,8 +782,9 @@ Simulator works based on activity. A change in input only can cause change in ou
    
       ```
 
-![]()
-![]()
+![](/assets/day4_4.png)
+
+![](/assets/bad_mux.png)
 
 
 
