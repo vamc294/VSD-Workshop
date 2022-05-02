@@ -488,6 +488,235 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
    - Therefore, multiply by 2 means  ----> append by zero
    - Therefore, multiply by 4 means  ----> append by 2 zeros
    - Therefore, multiply by 8 means  ----> append by 3 zeros
+
+# Day 3:Combinational And Synthesis Optimisation:
+## Intro To  Optimisation:
+## Combinational  Logic Optimisation :
+    
+ -  opt_check.v
+ 
+    ```
+    module opt_check (input a , input b , output y);
+	assign y = a?b:0;
+    endmodule 
+     
+     ```
+     - Here is the Circuit without optimisation:
+  
+ ![](assets/Opt_without_purge.jpg)    
+      
+ - The following command Removes the unused Wires:
+    
+    ``` 
+    opt_clean -purge
+    
+    ```
+  The results are as follows:
+ ![](assets/Opt_check_clean.png)
+  
+ ![](assets/Opt_check_stat.png)
+  
+  - opt_check2: 
+ ![](assets/opt_check2_stat.png)
+ ![](assets/opt_check2_synth.png)
+
+
+###  Multiple_modules_opt In Hier Vs flat:<br/>
+-  UnderExcerise <br/>
+   Here are the verilog_files associated with Mutliple Modules for Optimisation: <br/>
+![](assets/multiple_module.png)   
+-  Verilog Code For Multiptle_modules_opt:
+- 
+   ```
+   module sub_module1(input a , input b , output y);
+   assign y = a & b;
+   endmodule
+
+
+   module sub_module2(input a , input b , output y);
+   assign y = a^b;
+   endmodule
+
+
+   module multiple_module_opt(input a , input b , input c , input d , output y);
+   wire n1,n2,n3;
+
+   sub_module1 U1 (.a(a) , .b(1'b1) , .y(n1));
+      sub_module2 U2 (.a(n1), .b(1'b0) , .y(n2));
+      sub_module2 U3 (.a(b), .b(d) , .y(n3));
+
+     assign y = c | (b & n1); 
+
+
+     endmodule
+     
+   ```
+   Synthesis Report:
+   
+   ```
+   3.25. Printing statistics.
+
+    === sub_module1 ===
+
+    Number of wires:                  3
+    Number of wire bits:              3
+    Number of public wires:           3
+    Number of public wire bits:       3
+    Number of memories:               0
+    Number of memory bits:            0
+    Number of processes:              0
+    Number of cells:                  1
+      $_AND_                          1
+
+    === multiple_module_opt ===
+
+    Number of wires:                  7
+    Number of wire bits:              7
+    Number of public wires:           6
+    Number of public wire bits:       6
+    Number of memories:               0
+    Number of memory bits:            0
+    Number of processes:              0
+    Number of cells:                  3
+      $_AND_                          1
+      $_OR_                           1
+      sub_module1                     1
+ 
+    === design hierarchy ===
+
+    multiple_module_opt               1
+      sub_module1                     1
+
+    Number of wires:                 10
+    Number of wire bits:             10
+    Number of public wires:           9
+    Number of public wire bits:       9
+    Number of memories:               0
+    Number of memory bits:            0
+    Number of processes:              0
+    Number of cells:                  3
+      $_AND_                          2
+      $_OR_                           1
+
+   ```
+-  With opt_clean -purge vs without:<br/>
+   With Clean:<br/>
+     ![](assets/opt_clean.jpg)
+     
+     ![](assets/opt_clean2.jpg)
+
+-  Without clean:<br/>
+![](assets/without.jpg)
+  
+   
+- Multiple_module_opt2 hier vs Flatten:<br/>
+- Similarly Hier with Multiple_module_opt2 :<br/>
+![](assets/similarly.jpg)
+- Flatten multiple_module_opt2:
+ ![](assets/flaten_1.jpg)
+ ![](assets/flaten_2.jpg)
+   
+
+##  Seqential Logic Optimisation:
+##  Sequential Optimisation:
+-  Verilog Files for Sequential circuits assciated with D flip Flop:
+![](assets/seq.png)
+- dff_const1.v 
+  
+  ```
+  
+  module dff_const1(input clk, input reset, output reg q);   
+   always @(posedge clk, posedge reset) 
+   begin
+	if(reset)
+		q <= 1'b0;
+	else
+		q <= 1'b1;
+    end
+
+    endmodule
+  
+  
+  ```
+  ![](assets/seq_1.jpg)
+- It clearly Show the design follows a Clock.
+- So there is the synthesis Result expected as expected:
+  ![](assets/seq_2.jpg)
+  ![](assets/seq_3.jpg)
+ 
+-  Don't  forgot to add after synthesis to map to standard cell.Usually sequential and combinational standard cells are in Different library.<br />
+-  why?<br /> 
+   
+    ```
+     dfflibmap  ./my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+    
+    ```
+    
+-  here is the DFF mapping:   
+   ![](assets/dffmap.jpg)
+     
+
+- Here are the 
+   dff_const4.v
+   
+   ```
+   module dff_const4(input clk, input reset, output reg q);
+    reg q1;
+
+    always @(posedge clk, posedge reset)
+    begin
+	if(reset)
+	begin
+		q <= 1'b1;
+		q1 <= 1'b1;
+	end
+	  else
+	     begin
+		q1 <= 1'b1;
+		q <= q1;
+	   end
+          end
+
+     endmodule
+     
+   ```
+   
+- dff_const5.v
+ 
+ ```
+
+ module dff_const5(input clk, input reset, output reg q);
+ reg q1;
+
+ always @(posedge clk, posedge reset)
+ begin
+	if(reset)
+	begin
+		q <= 1'b0;
+		q1 <= 1'b0;
+	end
+	else
+	begin
+		q1 <= 1'b1;
+		q <= q1;
+	end
+ end
+
+ endmodule
+ 
+```
+
+
+
+
+
+
+
+
+
+
+
+
  #6. Day 5 - If Case For Generate
  
  
