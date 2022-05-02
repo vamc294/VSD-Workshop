@@ -8,12 +8,15 @@ Table of Contents
   - [2.1. Introduction to Simulation](#21-introduction-to-simulation)
     - [2.1.1. Simulation results](#211-simulation-results)
   - [2.2. Introduction to Synthesis](#22-introduction-to-synthesis)
-    - [2.2.1. Yosys synthesizer flow](#221-yosys-synthesizer-flow)
+    - [2.2.1. Synthesis using yosys](#221-Synthesis-using-yosys)
       - [2.2.1.1. Read RTL design](#2211-read-rtl-design)
       - [2.2.1.2. Generic synthesis](#2212-generic-synthesis)
       - [2.2.1.3. Read Sky130 cell library](#2213-read-sky130-cell-library)
       - [2.2.1.4. Generate netlist](#2214-generate-netlist)
       - [2.2.1.5. Show](#2215-show)
+      - [2.2.1.6. write verilog](#2216-write-verilog)
+      - [2.2.1.7. Netlist](#2217-Netlist)
+
 - [3. Day 2 - Timing libs, hierarchical vs flat synthesis and efficient flop coding styles](#3-day-2---timing-libs-hierarchical-vs-flat-synthesis-and-efficient-flop-coding-styles)
   - [3.1. Timing libs](#31-timing-libs)
     - [3.1.1. Sky130 Process Node](#311-sky130-process-node)
@@ -201,5 +204,106 @@ Therefore, we can understand that faster cells come at the penalty of area and p
 - More use of slower cells may cause sluggish circuit and may not meet performance needs.</br>
 The guidance offered to synthesizer is known as **constraints**.
 
+### 2.2.1. Synthesis using yosys
 
+#### 2.2.1.1. Read RTL design
+
+-  To invoke Yosys:
+   ```
+    cd verilog_files
+    $ yosys
+    
+   ```
+![](assets/image_10.png)
+</br>
+
+
+#### 2.2.1.2. Generic synthesis
+ ```
+ $  synth -top good_mux
+ 
+ ```
+
+![](assets/image_13.png)
+</br>
+![](assets/image_14.png)
+</br>
+synth[options]: This command runs the default synthesis script. This command does not operate on partly selected designs[].  
+
+
+#### 2.2.1.3. Read Sky130 cell library
+      
+  ```
+   $ read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib  
+  
+  ```
+![](assets/image_11.png)
+</br>  
+  read_liberty[options]: This command reads cells from liberty file as modules into current design[].  
+  
+  **read_verilog**</br>
+    </br>
+
+  ![](assets/image_12.png)
+</br>
+  
+  
+
+#### 2.2.1.4. Generate netlist
+  ```
+  
+  $  abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+   ```
+     
+
+   ![](assets/image_15.png)
+</br>
+   ![](assets/image_16.png)
+
+  </br>
+
+abc[options]: This pass uses the ABC tool [1] for technology mapping of yosys's internal gate library to a target architecture[].  
+ 
+**Note**: When no target cell library is specified the Yosys standard cell library is loaded into abc before the abc script is executed.  
+
+
+#### 2.2.1.5. Show
+
+ ```
+  $ show
+  
+  ```
+</br>
+
+  ![](assets/image_18.png)
+  </br>
+   ![](assets/image_17.png)
+
+</br>
+- To view the result as a grapviz use above command 
+#### 2.2.1.6. write verilog
+
+  ```
+  $ write_verilog -noattr good_mux_netlist.v
+  
+  ```
+   ![](assets/image_19.png)
+</br>
+- write_verilog      : Write the netlist to a file :
+
+- -noattr            : By using this option no attributes are included in the output. </br>
+- good_mux_netlist.v : File name to which we want to write the netlist.
+
+#### 2.2.1.7. Netlist
+    ```
+     $ !gvim good_mux_netlist.v
+    
+    ```
+![](assets/image_20.png)
+</br>
+- To view netlist we can use above command.<br/>
+
+
+The images for all the models are as follows:
 
