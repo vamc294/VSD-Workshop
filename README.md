@@ -456,7 +456,7 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
 **Optimisation**
   ```
 
-    module mul2(input[2:0]a,output[3:0]y);
+    module mul2(input[2:0]a,output[3:0]y); 
            assign y=a*2;
     endmodule
  
