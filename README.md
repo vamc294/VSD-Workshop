@@ -150,3 +150,17 @@ The images and results are as follows:
 ![](assets/image_5.png)
 
 ![](assets/waveform_gtkwave.png)
+
+# Introduction to Yosys
+
+# synthesis
+There is a need of tool to convert RTL to netlist.
+![](assets/Yosys_1.png)
+
+- RTL to gate level translation will be performed by snthesis.
+- Design is converted into gates and connections made between gates.
+- This is given out as a file called netlist.
+
+The working may look as follows:
+![](assets/image_6.png)
+
