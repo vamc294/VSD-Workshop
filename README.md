@@ -23,41 +23,35 @@ Table of Contents
     - [3.1.2. Introduction to standard cell library](#312-introduction-to-standard-cell-library)
   - [3.2. Hierarchial synthesis vs Flat synthesis](#32-hierarchial-synthesis-vs-flat-synthesis)
     - [3.2.1. Hierarchial synthesis](#321-hierarchial-synthesis)
-    - [3.2.2. Selective sub-module level synthesis](#322-selective-sub-module-level-synthesis)
-    - [3.2.3. Flat synthesis](#323-flat-synthesis)
-  - [3.3. Various Flop coding styles and optimization](#33-various-flop-coding-styles-and-optimization)
-    - [3.3.1. Optimizations](#331-optimizations)
-- [4. Day 3 - Combinational and Sequential optimizations](#4-day-3---combinational-and-sequential-optimizations)
-  - [4.1. Logic optimizations](#41-logic-optimizations)
-    - [4.1.1. Combinational Constant propogation](#411-combinational-constant-propogation)
-    - [4.1.2. Boolean logic optimization](#412-boolean-logic-optimization)
-    - [4.1.3. Sequential Constant propogation](#413-sequential-constant-propogation)
-  - [4.2. Logic optimizations in Yosys](#42-logic-optimizations-in-yosys)
-    - [4.2.1. Optimization design example 2](#421-optimization-design-example-2)
-    - [4.2.2. Optimization design example 2](#422-optimization-design-example-2)
-- [3. Day 4 - Timing libs, hierarchical vs flat synthesis and efficient flop coding styles](#3-day-2---timing-libs-hierarchical-vs-flat-synthesis-and-efficient-flop-coding-styles)
-  - [3.1. Timing libs](#31-timing-libs)
-    - [3.1.1. Sky130 Process Node](#311-sky130-process-node) 
-    - [3.1.2. Introduction to standard cell library](#312-introduction-to-standard-cell-library)
-  - [3.2. Hierarchial synthesis vs Flat synthesis](#32-hierarchial-synthesis-vs-flat-synthesis)
-    - [3.2.1. Hierarchial synthesis](#321-hierarchial-synthesis)
-    - [3.2.2. Selective sub-module level synthesis](#322-selective-sub-module-level-synthesis)
-    - [3.2.3. Flat synthesis](#323-flat-synthesis)
-  - [3.3. Various Flop coding styles and optimization](#33-various-flop-coding-styles-and-optimization)
-    - [3.3.1. Optimizations](#331-optimizations)
-- [6. Day 5 - If Case For Generate](#4-day-3---combinational-and-sequential-optimizations)
-  - [6.1. If statement](#41-logic-optimizations)
+    - [3.2.2. why to synthonly sub module ?](#322-why-to-synth-only sub-module-?)
+    - [3.2.3. How to code a flop ?](#323-How-to-code-a-flop-?)
   
-    - [6.1.1. If ](#411-combinational-constant-propogation)
-    - [6.1.2. else if](#411-combinational-constant-propogation)
-    - [6.1.3. Danger with If](#411-combinational-constant-propogation)
+- [4. Day 3 - Combinational and Sequential optimisation(#4-day-3---combinational-and-sequential-optimisation)
+  - [4.1. Combinational logic optimisation](#-combinational-logic-optimisation)
+    
+  - [4.2. Multiple_modules_opt In Hier Vs flat:](#42-Multiple_modukes_opt_In_Hier_Vs_flat)
+  - [4.3. Sequential Logic Optimisation](#43-Sequential-Logic_Optimisation)
+    
+- [5. Day 4 - Gate Level Simulation](#5-Gate-Level-Simulation)
+  - [5.1.1 What is GLS?](#51-What-is-GLS?)
+    
+  - [5.2. Blocking vs Non-Blocking statements:](#52-Blocking-vs-Non-Blocking-statements:)
+  - [5.3. Synthesis Simulation Mismatch](#53-Synthesis-Simulation-Mismatch)
+    - [5.3.1. Reasons](#331-Reasons)
+- [6. Day 5 - If Case For Generate](#4-day-3---combinational-and-sequential-optimizations)
+  - [6.1. If statement](#61-If-statement)
+  
+    - [6.1.1. If ](#611-If)
+    - [6.1.2. else if](#612-else-if)
+    - [6.1.3. Danger with If](#613-Danger-with-If)
    
-  - [6.2. Case statement](#42-logic-optimizations-in-yosys)
-    - [6.2.1. Caveat with case](#421-optimization-design-example-2)
-    - [6.2.2. Caveat with case2](#422-optimization-design-example-2)
-    - [6.2.3. Incomplete case](#422-optimization-design-example-2)
-   - [6.3. For vs For Generate](#42-logic-optimizations-in-yosys)
-     - [6.2.1. Caveat with case](#421-optimization-design-example-2)
+  - [6.2. Case statement](#62-Case-statement)
+    - [6.2.1. Caveat with case](#621-Caveat-with-case1)
+    - [6.2.2. Caveat with case2](#622-Caveat-with-case2)
+    - [6.2.3. Incomplete case](#623-Incomplete-case)
+   - [6.3. For loop](#62-For-loop)
+     - [6.3.1. For loop](#631-For-loop)
+     - [6.3.2. For Generate loop](#632-For-Generate-loop)
 
 
 
@@ -489,9 +483,9 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
    - Therefore, multiply by 4 means  ----> append by 2 zeros
    - Therefore, multiply by 8 means  ----> append by 3 zeros
 
-# Day 3:Combinational And Synthesis Optimisation:
+# 4.Day 3:Combinational And Sequential Optimisation:
 ## Intro To  Optimisation:
-## Combinational  Logic Optimisation :
+## 4.1 Combinational  Logic Optimisation :
     
  -  opt_check.v
  
@@ -521,7 +515,7 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
  ![](assets/opt_check2_synth.png)
 
 
-###  Multiple_modules_opt In Hier Vs flat:<br/>
+## 4.2 Multiple_modules_opt In Hier Vs flat:<br/>
 -  UnderExcerise <br/>
    Here are the verilog_files associated with Mutliple Modules for Optimisation: <br/>
 ![](assets/multiple_module.png)   
@@ -617,8 +611,8 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
  ![](assets/flaten_2.jpg)
    
 
-##  Seqential Logic Optimisation:
-##  Sequential Optimisation:
+## 4.3 Seqential Logic Optimisation:
+## 4.3.1 Sequential Optimisation:
 -  Verilog Files for Sequential circuits assciated with D flip Flop:
 ![](assets/seq.png)
 - dff_const1.v 
@@ -704,7 +698,7 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
  
 ```
 
-#5 Day 4 Gate Level Simulation
+# 5 Day 4 Gate Level Simulation
 ## 5.1.1 What is GLS?
 - Running test bench with netlist as DUT.
 - Netlist is logically same as RTL code 
@@ -790,11 +784,11 @@ Simulator works based on activity. A change in input only can cause change in ou
 
 
 
- #6. Day 5 - If Case For Generate
+ # 6. Day 5 - If Case For Generate
  
  
- ##6.1 If statement
-  ###6.1.1 If:
+ ## 6.1 If statement
+  ### 6.1.1 If:
 
    ```
 
@@ -820,7 +814,7 @@ If is used as a priority logic. Above code is example for normal if and else sta
 
 
 
- ##6.1.2 else if statement:
+ ## 6.1.2 else if statement:
  
  There is another kind of if else, where we can use else-if. The example is followed below:
 
@@ -862,7 +856,7 @@ If is used as a priority logic. Above code is example for normal if and else sta
 Multiple conditions can be checked through else if statement.
 
 
-###6.1.3 Danger with If
+### 6.1.3 Danger with If
 
 -Incomplete if statments cause Inferred latches(This is a bad coding style)
 -In combinational circuits, inferred latches are dangerous.
@@ -1012,7 +1006,7 @@ end
 ![](assets/comp_case_sim.png)
 
 ![](assets/comp_case_syn.png)
-## 5.3 For loop:
+## 6.3 For loop:
 -For loop is of two types:
 **For Loop:**
 -inside always 
