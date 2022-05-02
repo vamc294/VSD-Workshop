@@ -81,11 +81,11 @@ Testbench is a setup to apply stimulus [(test_vectors)](https://en.wikipedia.org
 **iVerilog based Simulation flow**:
 ![](assets/iverilog_based.png)
 
-1. We will apply design and testbench to iverilog.
+- 1. We will apply design and testbench to iverilog.
 
-2. Simulator looks for changes in input and dumps output changes into VCD file.
+- 2. Simulator looks for changes in input and dumps output changes into VCD file.
 
-3. We use gtk wave to view vcd file.
+- 3. We use gtk wave to view vcd file.
 
 [GTKWave](http://gtkwave.sourceforge.net/) is an open source tool for visualizing the signal dumps in .vcd/.lxt formats.  
 
@@ -127,19 +127,19 @@ The images are as follows:
 
 
 #  Simulation Using iverilog. <br/>
--  1.  Into iverilog simulator RTL file and Test-bench files are passed. Then "a.out" file is generated <br/>
+-  1. Into iverilog simulator, RTL file and Test-bench files are passed. Then "a.out" file is generated <br/>
 
 ```
 iverilog good_mux.v tb_good_mux.v
 
 ```
--  2. Now to get the .vcd file <br/>
+-  2.Now to get the .vcd file <br/>
 
 ```
 ./a.out
 
 ```
--  3.To view the waveform for logical verification run the .vcd file with gtkwave <br/>
+- 3.To view the waveform for logical verification run the .vcd file with gtkwave <br/>
 
 ``` 
  gtkwave tb_good_mux.vcd
@@ -153,7 +153,7 @@ The images and results are as follows:
 
 # Introduction to Yosys
 
- **Synthesis**
+ **Synthesis**:</br>
 There is a need of tool to convert RTL to netlist.
 ![](assets/Yosys_1.png)
 
@@ -163,4 +163,16 @@ There is a need of tool to convert RTL to netlist.
 
 The working may look as follows:
 ![](assets/image_6.png)
+
+** what is .lib ?**
+
+- Collection of logical modules is a .lib file.
+- It includes basic gates like and,or,not etc.
+- Different flavors of some gates (2 i/p, 3 i/p, slow, fast etc)will be available. </br>
+
+** Why different flavors of gate?** </br>
+Combinational delay in logic path determine maximum speed of operation of digital logic circuit.So we need cells that work fast tto make T_comb small.
+** Are faster cells sufficient?** </br>
+To ensure there are nohold issues at Dff_B, we need cells that work slow.
+
 
