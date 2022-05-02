@@ -388,3 +388,60 @@ Here the example of standard cell library is as follows:
 
 In hierarchial synthesis the hierarchy of the RTL design is preserved through the final netlist. Let us look at the below RTL design where we have two sub modules, both instantiated by a top modules.  
 
+![](assets/image_26.png)
+
+we can see sub modules 1 and 2 here:
+![](assets/image_25.png)
+
+
+
+**Stacked nMos vs Stacked pMos:**
+![](assets/image_29.png)
+
+- pMos has poor mobility, to improve it we have to make cells larger.
+- Stacked pmos is bad.
+- so we get nand based gates in this synthesis.
+### 3.2.2. Why to synth only sub module ?
+Just like synthesizing an RTL design at the top mudule level, it can be synthesized at the sub-module level as well. This level of freedom brings the below advantsges.  
+* &emsp;  Multiple instantions: In case of having multiple instantiations in our design, this feature helps to synthesize just one instance and use it iteratively throughout the top level.    
+* &emsp;  Massive desgins: In case of massive design, sub-module level synthesis reduces the burden on sythesis tool in-terms of performance and time.  
+ 
+We can take a look at the same example of multiple_modules.v.  Let us synthesize only sub_module1 and see how the final netlist appears.  
+We can see that the synth command just looks at the specified sub_module1 alone and sub_module2 is ommitted from synthesis.  
+
+- when we have multiple instance of same module.
+- To divide and conquer a massive design.
+ ![](assets/image_30.png)
+- 
+**flatten** :</br>This pass flattens the design by replacing cells by their implementation. 
+</br>
+Cells and/or modules with the 'keep_hierarchy' attribute set will not be flattened by this command." [source: http://yosyshq.net/yosys/cmd_flatten.html]  
+
+As the name suggestes this pass flattens out the design and hence the hierarchy is lost.  
+Let us observe the impact of 'flatten' on multiple_modules.v.  
+![flatten](assets/image_31.pg)  
+</br>
+
+
+We can see that the submodules were deleted and hierarchy is no longer preserved. 
+
+
+## 3.3. How to code a flop ?
+- abc tool maps only the combinational logic cells from the liberty. It doesn't look for the register cells. 
+-  If the RTL design has sequential logic, dfflibmap pass has to be executed before abc pass.
+-  dfflibmap pass looks for the register cells in the Liberty and maps to the sequential logic from the synthesis. And then abc pass has to used to complete the mapping for combinatorial logic.  
+** why flop?**
+- More combinational circuit means more glitch
+- we need element to store, i.e flop
+- flop will be stable, it changes only at the edge of clock.
+- As output changes only at the edge of the clock. So even if input glitching, output will be calmed down.
+**why set and Reset pins?**
+- If initial state of flop is unknown,it will take garbage value.
+- So we use set and reset pins.
+- **Asynchronous reset** wont wait for the clock </br>
+- If both set and reset are present, this may leads to **race-around** condition.
+- One of the example is:
+ ![](assets/image_27.png)
+ </br>
+  ![](assets/image_28.png)
+
