@@ -644,15 +644,13 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
   ![](assets/seq_2.jpg)
   ![](assets/seq_3.jpg)
  
--  Don't  forgot to add after synthesis to map to standard cell.Usually sequential and combinational standard cells are in Different library.<br />
--  why?<br /> 
    
     ```
      dfflibmap  ./my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
     
     ```
     
--  here is the DFF mapping:   
+-  DFF mapping:   
    ![](assets/dffmap.jpg)
      
 
