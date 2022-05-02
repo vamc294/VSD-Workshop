@@ -443,5 +443,5 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
 - One of the example is:
  ![](assets/image_27.png)
  </br>
-  ![](assets/image_28.png)
+ ![](assets/image_28.png)
 
