@@ -37,7 +37,7 @@ Table of Contents
     - [4.2.2. Optimization design example 2](#422-optimization-design-example-2)
 - [3. Day 4 - Timing libs, hierarchical vs flat synthesis and efficient flop coding styles](#3-day-2---timing-libs-hierarchical-vs-flat-synthesis-and-efficient-flop-coding-styles)
   - [3.1. Timing libs](#31-timing-libs)
-    - [3.1.1. Sky130 Process Node](#311-sky130-process-node)
+    - [3.1.1. Sky130 Process Node](#311-sky130-process-node) 
     - [3.1.2. Introduction to standard cell library](#312-introduction-to-standard-cell-library)
   - [3.2. Hierarchial synthesis vs Flat synthesis](#32-hierarchial-synthesis-vs-flat-synthesis)
     - [3.2.1. Hierarchial synthesis](#321-hierarchial-synthesis)
