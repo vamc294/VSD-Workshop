@@ -117,9 +117,9 @@ Testbench is a setup to apply stimulus [(test_vectors)](https://en.wikipedia.org
    ```
 
 The images are as follows:
-![] (assets/git_clone.png)
-![] (assets/image_2.png)
-![] (assets/image_3.png)
-![] (assets/image_4.png)
+![](assets/git_clone.png)
+![](assets/image_2.png)
+![](assets/image_3.png)
+![](assets/image_4.png)
 
 
