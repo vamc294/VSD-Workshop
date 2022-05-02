@@ -704,12 +704,83 @@ We can see that the submodules were deleted and hierarchy is no longer preserved
  
 ```
 
+#5 Day 4 Gate Level Simulation
+## 5.1.1 What is GLS?
+- Running test bench with netlist as DUT.
+- Netlist is logically same as RTL code 
+- same test bench align with design too
+### 5.1.2 Why GLS?
+- verifying the logical correctness of design after synthesis.
+- Ensuring the timing of design is met.
+- For this GLS we need to be run with delay annotation.
+###5.1.3 GLS using iverilog:
+If gate level models are delay annotated, then we can use GLS for timing violation
+![]()
+## 5.2 Blocking vs Non-Blocking statements:
 
+ **Blocking**
+    - Executes the statement in the order it is written
+    - So the first statement is evaluated before the second statement
 
+ **Non-blocking**
+    - Executes all the RHS when always BLOCK is entered and assigns to LHS
+    - Parallel evaluation
+## 5.3 Synthesis Simulation Mismatch
+### 5.3.1 Reasons:
+- Missing sensitivity list
+- Blocking vs non-blocking
+- non standard verilog coding
+**How simulator works?**
+Simulator works based on activity. A change in input only can cause change in output.
 
+**Ternary_mux:**
+  ```
+    module ternary_operator_mux (input i0 , input i1 , input sel , output y);
+	assign y = sel?i1:i0;
+	endmodule
+   ```
+   ![]()
+   
+   ![]()
+  
+  ![]()
+**good_mux**
 
+    ```
+    
+    module good_mux (input i0 , input i1 , input sel , output reg y);
+      always @ (*)
+      begin
+	if(sel)
+		y <= i1;
+	else 
+		y <= i0;
+        end
+      endmodule
+      
+    ```
 
+![]()
 
+![]()
+
+**bad_mux**
+
+      ```
+      module bad_mux (input i0 , input i1 , input sel , output reg y);
+      always @ (sel)
+       begin
+       if(sel)
+		y <= i1;
+	  else 
+	  	y <= i0;
+        end
+         endmodule
+   
+      ```
+
+![]()
+![]()
 
 
 
